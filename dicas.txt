@@ -1,0 +1,13 @@
+https://www.youtube.com/watch?v=-m5ywU8SW9E&t=78s   -> video q to me baseando, só n ensina a instalar
+
+pip install django
+pip show django    -> confirmar se foi instalado, é necessario adicionar o django nas variaveis de ambiente
+
+
+python .\manage.py runserver   -> inicia servidos local 
+
+Banco de dados:
+    python .\manage.py makemigrations    -> tá sendo criado a migração de acordo com nossos models
+    python .\manage.py migrate
+
+    baixe a extensão do vscode sqlite viewer, e depois clique sobre o arquivo db.sqlite q foi gerado para ter visualização do banco de dados.
