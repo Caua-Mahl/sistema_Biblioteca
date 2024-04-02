@@ -6,11 +6,19 @@
     <title>{% block title %}Meu Site{% endblock %}</title>
 </head>
 <body>
-    <header>
+    <header style="background-color: burlywood;">
         <nav>
             <ul>
                 <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'cadastro' %}">Cadastro</a></li>
+                
+                {% if 'usuario' in request.session %}
+                <li><a href="{% url 'logout' %}">Sair</a></li>
+                <li><a href="{% url 'livros' %}">Livros</a></li>
+                <li><a href="{% url 'cadastrarLivro' %}">Cadastrar Livros</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'cadastro' %}">Cadastro</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
@@ -18,7 +26,7 @@
         {% block content %}
         {% endblock %}
     </main>
-    <footer>
+    <footer style="background-color: burlywood;">
         <p>Desenvolvido por:</p>
         <a href="" target="_blank" rel="">  Cauã Felipe Mahl</a>
         <a href="" target="_blank" rel="">  Luan Goularte Kist</a>

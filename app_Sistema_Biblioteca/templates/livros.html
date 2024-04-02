@@ -1,0 +1,18 @@
+{% extends "layouts/base.html" %}
+{% block title %}Livros{% endblock %}
+{% block content %}
+    <h1>Livros</h1>
+
+    {% if livros %}
+            {% for livro in livros %}
+                <div class="livro">
+                    <h2>{{ livro.titulo }}</h2>
+                    <p>Autor: {{ livro.autor }}</p>
+                    <p>Gênero: {{ livro.genero }}</p>
+                    <p>Lançamento: {{ livro.lancamento }}</p>
+                </div>
+            {% endfor %}
+    {% else %}
+        <p>Nenhum livro cadastrado</p>
+    {% endif %}
+{% endblock %}
