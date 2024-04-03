@@ -2,6 +2,12 @@
 {% block title %}Home{% endblock %}
 {% block content %}
     <h1>Home</h1>
+    <h2>{{ request.session.get.usuario }}</h2>
+    {% if erro %}
+        <p>{{ erro }}</p>
+    {% endif %}
+    {% if sucesso %}
+        <p>{{ sucesso }}</p>
+    {% endif %}
     <p>Seja bem-vindo ao sistema de biblioteca!</p>
-    <p>Para acessar o cadastro, clique <a href="{% url 'cadastro' %}">aqui</a>.</p>
 {% endblock %}

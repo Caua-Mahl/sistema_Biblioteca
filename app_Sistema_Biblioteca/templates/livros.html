@@ -2,14 +2,31 @@
 {% block title %}Livros{% endblock %}
 {% block content %}
     <h1>Livros</h1>
-
+    {% if erro %}
+        <p>{{ erro }}</p>
+    {% endif %}
+    {% if sucesso %}
+        <p>{{ sucesso }}</p>
+    {% endif %}
     {% if livros %}
             {% for livro in livros %}
                 <div class="livro">
                     <h2>{{ livro.titulo }}</h2>
                     <p>Autor: {{ livro.autor }}</p>
                     <p>Gênero: {{ livro.genero }}</p>
-                    <p>Lançamento: {{ livro.lancamento }}</p>
+                    <p>Lançamento: {{ livro.lancamento|date:'d-m-Y' }}</p>
+                    <p>Nota Média: {{ livro.notaMedia }}</p>
+                    <form action="{% url 'resenharLivro' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value="{{ livro.id }}">
+                        <input type="submit" value="Escrever resenha">
+                    </form>
+                    <form action="{% url 'avaliarLivro' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value="{{ livro.id }}">
+                        <input type="number" name="nota" min="0" max="10" step="1" oninput="avaliar(this)" value="0" >
+                        <input type="submit" value="Avaliar">
+                    </form>
                 </div>
             {% endfor %}
     {% else %}

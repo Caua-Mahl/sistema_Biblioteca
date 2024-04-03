@@ -14,7 +14,7 @@
                 {% if 'usuario' in request.session %}
                 <li><a href="{% url 'logout' %}">Sair</a></li>
                 <li><a href="{% url 'livros' %}">Livros</a></li>
-                <li><a href="{% url 'cadastrarLivro' %}">Cadastrar Livros</a></li>
+                <li><a href="{% url 'adminLivro' %}">Admin Livros</a></li>
                 {% else %}
                     <li><a href="{% url 'login' %}">Login</a></li>
                     <li><a href="{% url 'cadastro' %}">Cadastro</a></li>
@@ -30,6 +30,21 @@
         <p>Desenvolvido por:</p>
         <a href="" target="_blank" rel="">  Cauã Felipe Mahl</a>
         <a href="" target="_blank" rel="">  Luan Goularte Kist</a>
-    </footer>
+    </footer>    
+
+    <script>
+        function avaliar(value) {
+            
+            value = Math.round(value);
+
+            if (value < 0) {
+                value = 0;
+            } else if (value > 10) {
+                value = 10;
+            }
+        }
+        
+    </script>
+
 </body>
 </html>

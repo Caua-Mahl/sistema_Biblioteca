@@ -1,5 +1,6 @@
 from django.db import models
 import re
+from app_Sistema_Biblioteca.Models.Avaliacao import Avaliacao
 
 class Livros(models.Model):
     titulo     = models.CharField(max_length=100)
@@ -14,6 +15,8 @@ class Livros(models.Model):
     def validarDados(self):
         self.validarTitulo()
         self.validarAutor()
+        self.validarGenero()
+        #self.validarLancamento()
 
     def validarTitulo(self):
         if len(self.titulo) < 3:
@@ -37,3 +40,21 @@ class Livros(models.Model):
         
         if not re.match(r'^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$', self.autor.strip()):
             raise Exception('Nome deve conter apenas letras e espaços!')
+
+    def validarGenero(self):
+        if self.genero not in ['Ação', 'Aventura', 'Comédia', 'Drama', 'Ficção', 'Romance', 'Terror']:
+            raise Exception('Gênero inválido!')
+        
+    #def validarLancamento(self):
+        #impedir de criar livros com data de lançamento futura
+
+    def notaMedia(self):
+        avaliacoes = Avaliacao.objects.filter(idLivro=self.id)
+
+        if not avaliacoes:
+            return 0.0
+
+        return sum([avaliacao.nota for avaliacao in avaliacoes]) / len(avaliacoes)
+
+
+

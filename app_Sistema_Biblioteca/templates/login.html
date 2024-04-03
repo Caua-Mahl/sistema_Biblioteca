@@ -7,7 +7,6 @@
     {% elif sucesso %}
         <p>{{ sucesso }}</p>
     {% endif %}
-
     <form action="{% url 'logar' %}" method="post">
         {% csrf_token %}
         <label for="email">E-mail:</label>

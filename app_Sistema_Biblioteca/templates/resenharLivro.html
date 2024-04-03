@@ -1,0 +1,25 @@
+{% extends "layouts/base.html" %}
+{% block title %}Resenhar Livro{% endblock %}
+{% block content %}
+    <h1>Resenhar Livro</h1>
+    <h2>{{ livro.titulo }}</h2>
+    {% if erro %}
+        <p>{{ erro }}</p>
+    {% endif %}
+    {% if sucesso %} 
+        <p>{{ sucesso }}</p>
+    {% endif %}
+    <form action="{% url 'resenha' %}" method="post">
+        {% csrf_token %}
+        {% if resenha %}
+            <input type="hidden" name="id" value="{{ resenha.id }}">
+            <input type="hidden" name="livro" value="{{ livro.id }}">
+            <textarea name="resenha" id="resenha">{{ resenha.resenha }}</textarea>
+            <input type="submit" value="Atualizar">
+        {% else %}
+            <input type="hidden" name="livro" value="{{ livro.id }}">
+            <textarea name="resenha" id="resenha"></textarea>
+            <input type="submit" value="Enviar">
+        {% endif %}
+    </form>
+{% endblock %}
