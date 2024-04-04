@@ -1,4 +1,5 @@
 * {
+    font-family: sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -10,8 +11,9 @@
 /* _____________________________________________________________________ */
 
 
+
 header {
-    background-color: #a9b5eb;
+    background-color: #362e27;
     padding: 10px 0;
     display: flex;
     flex-direction: row;
@@ -30,10 +32,22 @@ nav ul {
 
 nav ul li {
     margin: 0 10px;
+    margin: 12px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+}
+
+nav a:hover {
+    color: #FFD700;
+    transition: 1.0s;
 }
 
 h1, h2, h3, h4, h5, h6 {
     margin: 10px;
+    color: #FFD700;
 }
 
 textarea {
@@ -47,9 +61,18 @@ textarea {
 /* Corpo, uso geral */
 /* _____________________________________________________________________ */
 
+.formCadastro {
+    color: #fff;
+}
+
+.formCadastro:focus {
+    outline: none; 
+    border-color: #FFD700; 
+    box-shadow: 0 0 5px #FFD700; 
+}
 
 main {
-    background-color: #ee7878;
+    background-color: #5F4B3B;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -59,25 +82,58 @@ main {
     padding: 30px;
 }
 
+.aviso {
+    color: #856404;
+    background-color: #FFF3CD;
+    border: 2px solid #856404;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 25px auto;
+}
+
+label {
+    margin-top: 25px;
+}
+
 form {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 50%;
+    color: #fff;
+}
+
+p {
+    color: #fff;
 }
 
 form input {
     margin: 10px;
     padding: 5px;
+    border-radius: 5px;
 }
 
-button, .botao {
+form input:focus {
+    outline: none; 
+    border-color: #FFD700;
+    box-shadow: 0 0 5px #FFD700; 
+}
+
+button {
     margin: 10px;
-    padding: 5px;
-    background-color: #47e41c;
-    color: white;
+    padding: 10px;
+    background-color: #FFD700;
+    color: #5F4B3B;
     border: none;
     border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+button:hover {
+    transition: 1s;
+    background-color: #fff;
+    color: #333333; 
 }
 
 /* _____________________________________________________________________ */
@@ -99,7 +155,7 @@ button, .botao {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    background-color: chocolate;
+    background-color: #362e27;
     border-radius: 10px;
 }
 
@@ -110,6 +166,25 @@ button, .botao {
 
 .livrosNota label {
     margin-right: 10px;
+}
+
+.botao {
+    margin: 10px;
+    padding: 10px;
+    background-color: #FFD700;
+    color: #5F4B3B;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+.botao:hover {
+    transition: 1s;
+    background-color: #fff;
+    color: #333333; 
 }
 
 /* _____________________________________________________________________ */
@@ -184,10 +259,21 @@ button, .botao {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #253583;
+    background-color: #362e27;
     padding: 20px;
     border-radius: 10px;
     margin: 20px;
+    color: #fff;
+}
+
+#genero {
+    padding: 3px;
+    border-radius: 5px;
+    width: 180px;
+}
+
+#lancamento {
+    width: 180px;
 }
 
 .adminLivroLista {
@@ -196,7 +282,7 @@ button, .botao {
     align-items: center;
     justify-content: center;
     width: auto;
-    background-color: #253583;
+    background-color: #362e27;
     padding: 20px;
     border-radius: 10px;
 }
@@ -213,10 +299,14 @@ button, .botao {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    background-color: chocolate;
+    background-color: #5F4B3B;
     border-radius: 10px;
+    color: #fff;
 }
 
+.lista-btn {
+    width: 100%;
+}
 /* _____________________________________________________________________ */
 
 
@@ -224,7 +314,7 @@ button, .botao {
 /* _____________________________________________________________________ */
 
 footer {
-    background-color: #a9b5eb;
+    background-color: #362e27;
     padding: 10px;
     display: flex;
     flex-direction: row;

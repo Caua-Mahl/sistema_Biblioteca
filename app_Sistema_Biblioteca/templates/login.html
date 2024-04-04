@@ -9,10 +9,12 @@
     {% endif %}
     <form action="{% url 'logar' %}" method="post">
         {% csrf_token %}
-        <label for="email">E-mail:</label>
+        <label class="email" for="email"><strong>E-mail:</strong></label>
         <input type="email" name="email" id="email">
-        <label for="senha">Senha:</label>
+        <label for="senha"><strong>Senha:</strong></label>
         <input type="password" name="senha" id="senha">
-        <button type="submit">Entrar</button>
+        <button type="submit"><strong>Entrar</strong></button>
     </form>
 {% endblock %}
+
+

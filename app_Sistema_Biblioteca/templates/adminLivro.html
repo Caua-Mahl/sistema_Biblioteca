@@ -56,12 +56,12 @@
                             </select>
                             <label for="lancamento">Lançamento</label>
                             <input class="lancamentoUp" type="date" name="lancamento" id="lancamento" value="{{ livro.lancamento|date:'d-m-Y' }}" required>
-                            <button type="submit">Editar</button>
+                            <button type="submit" class="lista-btn">Editar</button>
                         </form>
                         <form action="{% url 'excluirLivro' %}" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="id" value="{{ livro.id }}">
-                            <button type="submit">Excluir</button>
+                            <button type="submit"  class="lista-btn">Excluir</button>
                         </form>
                     </div>
                 {% endfor %}
@@ -71,3 +71,5 @@
         {% endif %}
     </div>
 {% endblock %}
+
+
