@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 import re
+from app_Sistema_Biblioteca.Models.Avaliacao import Avaliacao
+from app_Sistema_Biblioteca.Models.Resenha import Resenha
+
 
 class Usuario(models.Model):
     nome  = models.CharField(max_length=100)
@@ -57,3 +60,21 @@ class Usuario(models.Model):
         
         if not re.match(r'^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$', self.nome.strip()):
             raise Exception('Nome deve conter apenas letras e espaços!')
+
+
+    @staticmethod
+    def puxarUsuarios(idLivro):
+        usuarios = Usuario.objects.all()
+
+        for usuario in usuarios:
+            avaliacoes = Avaliacao.objects.filter(idUsuario=usuario.id, idLivro=idLivro)
+            resenhas   = Resenha.objects.filter(idUsuario=usuario.id, idLivro=idLivro)
+
+            if avaliacoes:
+                usuario.nota = avaliacoes[0].nota
+            
+            if resenhas:
+                usuario.resenha = resenhas[0].resenha
+            
+        return usuarios
+        

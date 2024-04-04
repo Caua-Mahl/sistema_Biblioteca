@@ -1,0 +1,31 @@
+{% extends "layouts/base.html" %}
+{% block title %}Livros{% endblock %}
+{% block content %}
+    <h1>Livros</h1>
+    {% if erro %}
+        <p>{{ erro }}</p>
+    {% endif %}
+    {% if sucesso %}
+        <p>{{ sucesso }}</p>
+    {% endif %}
+    {% if livros %}
+        <div class="livros">
+            {% for livro in livros %}
+                <div class="livro">
+                    <h2>{{ livro.titulo }}</h2>
+                    <p>Autor: {{ livro.autor }}</p>
+                    <p>Gênero: {{ livro.genero }}</p>
+                    <p>Lançamento: {{ livro.lancamento|date:'d-m-Y' }}</p>
+                    <p>Nota Média: {{ livro.notaMedia }}</p>
+                    <form action="{% url 'livro' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="livro" value="{{ livro.id }}">
+                        <input type="submit" value="Ver mais" class="botao">
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Nenhum livro cadastrado</p>
+    {% endif %}
+{% endblock %}

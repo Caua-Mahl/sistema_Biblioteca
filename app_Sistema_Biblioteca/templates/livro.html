@@ -1,0 +1,69 @@
+{% extends "layouts/base.html" %}
+{% block title %}Resenhar Livro{% endblock %}
+{% block content %}
+    <h1>{{ livro.titulo }}</h1>
+    {% if erro %}
+        <p>{{ erro }}</p>
+    {% endif %}
+    {% if sucesso %} 
+        <p>{{ sucesso }}</p>
+    {% endif %}
+    <div class="livroOpcoes">
+
+        <form action="{% url 'resenha' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="livro" value="{{ livro.id }}">
+            <input type="hidden" name="id" value="{{ resenha.id }}">
+            <textarea name="resenha" id="resenha" rows="9" required >{{ resenha.resenha }}</textarea>
+            <input type="submit" value="Resenhar" class="botao">
+        </form>
+
+        <form action="{% url 'avaliarLivro' %}" method="post" class="livrosNota">
+            {% csrf_token %}
+            <input type="hidden" name="livro" value="{{ livro.id }}">
+            {% if avaliacao %}
+                <input type="hidden" name="id" value="{{ avaliacao.id }}">
+                <label for="nota">Nota:</label>
+                <select name="nota" id="nota" required>
+                    <option value="0" {% if avaliacao.nota == 0 %}selected{% endif %}>0</option>
+                    <option value="1" {% if avaliacao.nota == 1 %}selected{% endif %}>1</option>
+                    <option value="2" {% if avaliacao.nota == 2 %}selected{% endif %}>2</option>
+                    <option value="3" {% if avaliacao.nota == 3 %}selected{% endif %}>3</option>
+                    <option value="4" {% if avaliacao.nota == 4 %}selected{% endif %}>4</option>
+                    <option value="5" {% if avaliacao.nota == 5 %}selected{% endif %}>5</option>
+                </select>
+            {% else %}
+                <label for="nota">Nota:</label>
+                <select name="nota" id="nota" required>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            {% endif %}
+            <input type="submit" value="Avaliar" class="botao">
+        </form>
+    </div>
+
+    <div class="livroTodas">
+        {% for usuario in usuarios %}
+            <div class="livroTodasUsuario">
+                <h2>{{ usuario.nome }}</h2>
+                <div class="livroTodasUsuarioResenha">
+                    <p>Resenha: </p>
+                    <textarea name="resenha" id="resenha" rows="9" readonly>{{ usuario.resenha }}</textarea>
+                </div>
+                <div class="livroTodasUsuarioNota">
+                    <p>Nota:</p>
+                    <p>{{ usuario.nota }}</p>
+                </div>
+
+
+            </div>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}

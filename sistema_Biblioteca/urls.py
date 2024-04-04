@@ -17,11 +17,11 @@ urlpatterns = [
     path('logar/',         login.logar,            name='logar'),
     path('logout/',        login.logout,           name='logout'),
 
-    path('livros/',        livro.livros,           name='livros'),
+    path('livros/',        livro.livrosLista,      name='livros'),
+    path('livro/',         livro.livro,            name='livro'),
     path('adminLivro/',    livro.adminLivro,       name='adminLivro'),
     path('editarLivro/',   livro.editarLivro,      name='editarLivro'),
     path('excluirLivro/',  livro.excluirLivro,     name='excluirLivro'),
     path('avaliarLivro/',  livro.avaliarLivro,     name='avaliarLivro'),
-    path('resenharLivro/', livro.resenharLivro,    name='resenharLivro'),
     path('resenha/',       livro.resenha,          name='resenha'),
 ]
