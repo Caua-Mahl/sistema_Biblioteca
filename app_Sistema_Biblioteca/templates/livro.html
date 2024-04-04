@@ -49,19 +49,27 @@
 
     <div class="livroTodas">
         {% for usuario in usuarios %}
-            <div class="livroTodasUsuario">
-                <h2>{{ usuario.nome }}</h2>
-                <div class="livroTodasUsuarioResenha">
-                    <p>Resenha: </p>
-                    <textarea name="resenha" id="resenha" rows="9" readonly>{{ usuario.resenha }}</textarea>
+            {% if usuario.resenha != None  or usuario.nota != None %}
+                <div class="livroTodasUsuario">
+                    <h2>{{ usuario.nome }}</h2>
+                    <div class="livroTodasUsuarioResenha">
+                        <p>Resenha: </p>
+                        {% if usuario.resenha %}
+                            <textarea name="resenha" id="resenha" rows="9" readonly>{{ usuario.resenha }}</textarea>
+                        {% else %}
+                            <p>Ainda não resenhou <p>
+                        {% endif %}
+                    </div>
+                    <div class="livroTodasUsuarioNota">
+                        <p>Nota:</p>
+                        {% if usuario.nota != None %}
+                            <p>{{ usuario.nota }}</p>
+                        {% else %}
+                            <p>Ainda não avaliou</p>
+                        {% endif %}
+                    </div>
                 </div>
-                <div class="livroTodasUsuarioNota">
-                    <p>Nota:</p>
-                    <p>{{ usuario.nota }}</p>
-                </div>
-
-
-            </div>
+            {% endif %}
         {% endfor %}
     </div>
 
