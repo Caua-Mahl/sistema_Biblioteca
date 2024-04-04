@@ -42,7 +42,7 @@ class Livros(models.Model):
             raise Exception('Nome deve conter apenas letras e espaços!')
 
     def validarGenero(self):
-        if self.genero not in ['Ação', 'Aventura', 'Comédia', 'Drama', 'Ficção', 'Romance', 'Terror']:
+        if self.genero not in ['Ação', 'Aventura', 'Comédia', 'Drama', 'Ficção Científica', 'Romance', 'Terror']:
             raise Exception('Gênero inválido!')
         
     #def validarLancamento(self):
@@ -53,8 +53,8 @@ class Livros(models.Model):
 
         if not avaliacoes:
             return 0.0
-
-        return sum([avaliacao.nota for avaliacao in avaliacoes]) / len(avaliacoes)
+        
+        return round(sum([avaliacao.nota for avaliacao in avaliacoes]) / len(avaliacoes), 1)
 
 
 

@@ -6,86 +6,6 @@ from app_Sistema_Biblioteca.Models.Livros import Livros
 from app_Sistema_Biblioteca.Models.Avaliacao import Avaliacao
 from app_Sistema_Biblioteca.Models.Resenha import Resenha
 
-
-def home(request):
-    return render(request, 'home.html')
-
-#_________________________________________________________________________________________________________
-
-
-#Cadastro
-#_________________________________________________________________________________________________________
-def cadastro(request):
-    return render(request, 'cadastro.html')
-
-def cadastrar(request):
-    novoUsuario = Usuario()
-    novoUsuario.nome  = request.POST['nome']
-    novoUsuario.email = request.POST['email']
-    novoUsuario.senha = request.POST['senha']
-
-    try :
-        novoUsuario.validarDadosCadastro(request.POST['confirmarSenha'])
-
-        if novoUsuario.nome[0] == ' ':
-            novoUsuario.nome = novoUsuario.nome[1:]
-
-        User.objects.create_user(username=novoUsuario.email, email=novoUsuario.email, password=novoUsuario.senha)
-        novoUsuario.save()
-        
-        return render(request, 'login.html', {'sucesso': 'Usuário cadastrado com sucesso!'})
-
-    except Exception as e:
-        return render(request, 'cadastro.html', {'erro': e})
-    
-#_________________________________________________________________________________________________________
-
-
-#Login
-#_________________________________________________________________________________________________________
-
-def login(request):
-    if 'usuario' in request.session:
-        return render(request, 'home.html')
-    
-    return render(request, 'login.html')
-
-def logar(request):
-    usuario = Usuario()
-    usuario.email = request.POST['email']
-    usuario.senha = request.POST['senha']
-
-    try:
-        usuario.validarDadosLogin()
-
-        login = authenticate(request, username=request.POST['email'], password=request.POST['senha'])
-
-        if login is None:
-            raise Exception('Email ou senha inválidos!')
-        
-        usuario = Usuario.objects.get(email=request.POST['email'])
-        request.session['usuario'] = {'id': usuario.id, 'nome': usuario.nome}
-
-
-        return render(request, 'home.html', {'sucesso':  request.session['usuario']['nome'] + ' logado com sucesso!'})
-    
-    except Exception as e:
-        return render(request, 'login.html', {'erro': e})
-
-def logout(request):
-    if 'usuario' in request.session:
-        del request.session['usuario']
-    
-    return render(request, 'home.html', {'sucesso': 'Usuário deslogado com sucesso!'})
-
-
-
-#_________________________________________________________________________________________________________
-
-
-#Livros
-#_________________________________________________________________________________________________________
-
 def livros(request):
     return render(request, 'livros.html', {'livros': Livros.objects.all()})
 
@@ -144,11 +64,6 @@ def excluirLivro(request):
     except Exception as e:
         return render(request, 'adminLivro.html', {'erro': 'Não foi possivel excluir o livro', 'livros': Livros.objects.all()})
     
-#_________________________________________________________________________________________________________
-
-
-#Avalição
-#_________________________________________________________________________________________________________
 
 def avaliarLivro(request):
     try:            
@@ -174,13 +89,6 @@ def avaliarLivro(request):
         return render(request, 'livros.html', {'sucesso': 'Livro avaliado com sucesso!', 'livros': Livros.objects.all()})
     except Exception as e:
         return render(request, 'livros.html', {'erro': e, 'livros': Livros.objects.all()})
-    
-
-#_________________________________________________________________________________________________________
-
-
-#Resenha
-#_________________________________________________________________________________________________________
 
 def resenharLivro(request):
     return render(request, 'resenharLivro.html', {

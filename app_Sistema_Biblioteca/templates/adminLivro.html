@@ -8,71 +8,66 @@
     {% elif sucesso %}
         <p>{{ sucesso }}</p>
     {% endif %}
-    <h2>Cadastrar Livro</h2>
-    <form action="{% url 'adminLivro' %}" method="post">
-        {% csrf_token %}
-        <label for="titulo">Livro:</label>
-        <input type="text" name="titulo" id="titulo">
-        <label for="autor">Autor:</label>
-        <input type="text" name="autor" id="autor">
-        <label for="genero">Gênero:</label>
-        <select name="genero" id="genero">
-            <option value="Ação">Ação</option>
-            <option value="Aventura">Aventura</option>
-            <option value="Comédia">Comédia</option>
-            <option value="Drama">Drama</option>
-            <option value="Ficção Científica">Ficção Científica</option>
-            <option value="Romance">Romance</option>
-            <option value="Terror">Terror</option>
-        </select>
-        <label for="lancamento">Lançamento:</label>
-        <input type="date" name="lancamento" id="lancamento">
-        <button type="submit">Cadastrar</button>
-    </form>
-
-    <h2>Lista de Livros</h2>
-    <table>
-        <tr>
-            <th>Titulo</th>
-            <th>Autor</th>
-            <th>Gênero</th>
-            <th>Lançamento</th>
-            <th>Opções</th>
-        </tr>
-
+    <div class="adminLivroCadastrar">
+        <h2>Cadastrar Livro</h2>
+        <form action="{% url 'adminLivro' %}" method="post">
+            {% csrf_token %}
+            <label for="titulo">Livro:</label>
+            <input type="text" name="titulo" id="titulo">
+            <label for="autor">Autor:</label>
+            <input type="text" name="autor" id="autor">
+            <label for="genero">Gênero:</label>
+            <select name="genero" id="genero">
+                <option value="Ação">Ação</option>
+                <option value="Aventura">Aventura</option>
+                <option value="Comédia">Comédia</option>
+                <option value="Drama">Drama</option>
+                <option value="Ficção Científica">Ficção Científica</option>
+                <option value="Romance">Romance</option>
+                <option value="Terror">Terror</option>
+            </select>
+            <label for="lancamento">Lançamento:</label>
+            <input type="date" name="lancamento" id="lancamento">
+            <button type="submit">Cadastrar</button>
+        </form>
+    </div>
+    <div class="adminLivroLista">
+        <h2>Lista de Livros</h2> 
         {% if livros %}
-            {% for livro in livros %}
-                <form action="{% url 'editarLivro' %}" method="post">
-                    {% csrf_token %}
-                    <input type="hidden" name="id" value="{{ livro.id }}">
-                    <label for="titulo">Livro:</label>
-                    <input type="text" name="titulo" id="titulo" value="{{ livro.titulo }}">
-                    <label for="autor">Autor:</label>
-                    <input type="text" name="autor" id="autor" value="{{ livro.autor }}">
-                    <label for="genero">Gênero:</label>
-                    <select name="genero" id="genero">
-                        <option value="Ação" {% if livro.genero == 'Ação' %} selected {% endif %}>Ação</option>
-                        <option value="Aventura" {% if livro.genero == 'Aventura' %} selected {% endif %}>Aventura</option>
-                        <option value="Comédia" {% if livro.genero == 'Comédia' %} selected {% endif %}>Comédia</option>
-                        <option value="Drama" {% if livro.genero == 'Drama' %} selected {% endif %}>Drama</option>
-                        <option value="Ficção Científica" {% if livro.genero == 'Ficção Científica' %} selected {% endif %}>Ficção Científica</option>
-                        <option value="Romance" {% if livro.genero == 'Romance' %} selected {% endif %}>Romance</option>
-                        <option value="Terror" {% if livro.genero == 'Terror' %} selected {% endif %}>Terror</option>
-                    </select>
-                    <label for="lancamento">Lançamento</label>
-                    <input class="lancamentoUp" type="date" name="lancamento" id="lancamento" value="{{ livro.lancamento|date:'d-m-Y' }}">
-                    <button type="submit">Editar</button>
-                </form>
-                <form action="{% url 'excluirLivro' %}" method="post">
-                    {% csrf_token %}
-                    <input type="hidden" name="id" value="{{ livro.id }}">
-                    <button type="submit">Excluir</button>
-                </form>
-                <br>
-
-            {% endfor %}
+            <div class="adminLivroListaLivros">
+                {% for livro in livros %}
+                    <div class="adminLivroListaLivrosLivro">
+                        <form action="{% url 'editarLivro' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="id" value="{{ livro.id }}">
+                            <label for="titulo">Livro:</label>
+                            <input type="text" name="titulo" id="titulo" value="{{ livro.titulo }}">
+                            <label for="autor">Autor:</label>
+                            <input type="text" name="autor" id="autor" value="{{ livro.autor }}">
+                            <label for="genero">Gênero:</label>
+                            <select name="genero" id="genero">
+                                <option value="Ação" {% if livro.genero == 'Ação' %} selected {% endif %}>Ação</option>
+                                <option value="Aventura" {% if livro.genero == 'Aventura' %} selected {% endif %}>Aventura</option>
+                                <option value="Comédia" {% if livro.genero == 'Comédia' %} selected {% endif %}>Comédia</option>
+                                <option value="Drama" {% if livro.genero == 'Drama' %} selected {% endif %}>Drama</option>
+                                <option value="Ficção Científica" {% if livro.genero == 'Ficção Científica' %} selected {% endif %}>Ficção Científica</option>
+                                <option value="Romance" {% if livro.genero == 'Romance' %} selected {% endif %}>Romance</option>
+                                <option value="Terror" {% if livro.genero == 'Terror' %} selected {% endif %}>Terror</option>
+                            </select>
+                            <label for="lancamento">Lançamento</label>
+                            <input class="lancamentoUp" type="date" name="lancamento" id="lancamento" value="{{ livro.lancamento|date:'d-m-Y' }}" required>
+                            <button type="submit">Editar</button>
+                        </form>
+                        <form action="{% url 'excluirLivro' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="id" value="{{ livro.id }}">
+                            <button type="submit">Excluir</button>
+                        </form>
+                    </div>
+                {% endfor %}
+            </div>
         {% else %}
             <p>Nenhum livro cadastrado</p>
         {% endif %}
-
+    </div>
 {% endblock %}

@@ -9,6 +9,7 @@
         <p>{{ sucesso }}</p>
     {% endif %}
     {% if livros %}
+        <div class="livros">
             {% for livro in livros %}
                 <div class="livro">
                     <h2>{{ livro.titulo }}</h2>
@@ -19,16 +20,27 @@
                     <form action="{% url 'resenharLivro' %}" method="post">
                         {% csrf_token %}
                         <input type="hidden" name="id" value="{{ livro.id }}">
-                        <input type="submit" value="Escrever resenha">
+                        <input type="submit" value="Escrever resenha" class="botao">
                     </form>
                     <form action="{% url 'avaliarLivro' %}" method="post">
                         {% csrf_token %}
                         <input type="hidden" name="id" value="{{ livro.id }}">
-                        <input type="number" name="nota" min="0" max="10" step="1" oninput="avaliar(this)" value="0" >
-                        <input type="submit" value="Avaliar">
+                        <div class="livrosNota">
+                            <label for="nota">Nota:</label>
+                            <select name="nota" id="nota" required>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <input type="submit" value="Avaliar" class="botao">
                     </form>
                 </div>
             {% endfor %}
+        </div>
     {% else %}
         <p>Nenhum livro cadastrado</p>
     {% endif %}

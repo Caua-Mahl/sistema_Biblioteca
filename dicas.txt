@@ -11,3 +11,7 @@ Banco de dados:
     python .\manage.py migrate
 
     baixe a extensão do vscode sqlite viewer, e depois clique sobre o arquivo db.sqlite q foi gerado para ter visualização do banco de dados.
+
+mudanças css e js
+    python manage.py collectstatic
+

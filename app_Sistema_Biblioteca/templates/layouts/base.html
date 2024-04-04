@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Meu Site{% endblock %}</title>
+    <link href="{% static 'style.css' %}" rel="stylesheet">
 </head>
 <body>
-    <header style="background-color: burlywood;">
+    <header>
         <nav>
             <ul>
                 <li><a href="{% url 'home' %}">Home</a></li>
@@ -26,25 +28,12 @@
         {% block content %}
         {% endblock %}
     </main>
-    <footer style="background-color: burlywood;">
+    <footer>
         <p>Desenvolvido por:</p>
         <a href="" target="_blank" rel="">  Cauã Felipe Mahl</a>
         <a href="" target="_blank" rel="">  Luan Goularte Kist</a>
     </footer>    
 
-    <script>
-        function avaliar(value) {
-            
-            value = Math.round(value);
-
-            if (value < 0) {
-                value = 0;
-            } else if (value > 10) {
-                value = 10;
-            }
-        }
-        
-    </script>
-
+    <script src="{% static 'script.js' %}"></script>
 </body>
 </html>
