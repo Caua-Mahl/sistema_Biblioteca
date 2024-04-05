@@ -4,7 +4,7 @@ from app_Sistema_Biblioteca.Models.Usuario import Usuario
 
 def login(request):
     if 'usuario' in request.session:
-        return render(request, 'home.html')
+        return render(request, 'home.html', { 'erro' : 'Você já está logado!' })
     
     return render(request, 'login.html')
 
@@ -24,13 +24,17 @@ def logar(request):
         usuario = Usuario.objects.get(email=request.POST['email'])
         request.session['usuario'] = {'id': usuario.id, 'nome': usuario.nome}
 
-
-        return render(request, 'home.html', {'sucesso':  request.session['usuario']['nome'] + ' logado com sucesso!'})
+        request.session['usuario']['admin'] = True if usuario.admin == True else False
+        
+        return render(request, 'home.html', {'sucesso': 'Olá ' + request.session['usuario']['nome'] + ', seja bem-vindo!'})
     
     except Exception as e:
         return render(request, 'login.html', {'erro': e})
 
 def logout(request):
+    if 'usuario' not in request.session:
+        return render(request, 'home.html', { 'erro' : 'Você não está logado!' })
+
     if 'usuario' in request.session:
         del request.session['usuario']
     

@@ -15,5 +15,6 @@ class Command(BaseCommand):
                 nome=fake.name(),
                 email=fake.email(),
                 senha=fake.password(),
+                admin=fake.boolean(chance_of_getting_true=0)
             )
             usuario.save()

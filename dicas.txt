@@ -24,3 +24,5 @@ popular rapidamente:
         python manage.py resenhas
         python manage.py avaliacoes
 
+criar user admin
+    ao cadastrar botar email como admin@gmail.com, ou se estiver usando dbeaver setar como true a coluna admin

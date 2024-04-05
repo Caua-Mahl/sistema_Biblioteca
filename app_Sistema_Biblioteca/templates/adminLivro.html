@@ -36,12 +36,12 @@
             {% if livros %}
             <div class="filtroLivros">
                 <label for="filtro">Filtrar por:</label>
-                <select id="filtro" onchange="filtrarLivro(parentElement)">
+                <select id="filtro" onchange="filtrarLivro(parentElement)" class="escolha">
                     <option value="titulo">titulo</option>
                     <option value="autor">autor</option>
                     <option value="gênero">gênero</option>
                 </select>
-                <input type="text" id="filtroTexto" onkeyup="filtrarLivro(parentElement)">
+                <input type="text" id="filtroTexto" onkeyup="filtrarLivro(parentElement)" class="digitado">
             </div>
 
             <div class="ordenacaoLivros">

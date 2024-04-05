@@ -13,11 +13,13 @@
             <a href="{% url 'home' %}" class="logo"><img src="{% static 'img/logo.png' %}" alt="logo"></a>
             <ul>
                 <li><a href="{% url 'home' %}">Home</a></li>
-                
+
                 {% if 'usuario' in request.session %}
-                <li><a href="{% url 'logout' %}">Sair</a></li>
                 <li><a href="{% url 'livros' %}">Livros</a></li>
-                <li><a href="{% url 'adminLivro' %}">Admin Livros</a></li>
+                <li><a href="{% url 'logout' %}">Sair</a></li>
+                    {% if request.session.usuario.admin == True %}
+                        <li><a href="{% url 'adminLivro' %}">Admin</a></li>
+                    {% endif %}
                 {% else %}
                     <li><a href="{% url 'login' %}">Login</a></li>
                     <li><a href="{% url 'cadastro' %}">Cadastro</a></li>
