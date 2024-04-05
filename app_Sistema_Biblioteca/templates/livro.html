@@ -56,7 +56,7 @@
                         {% if usuario.resenha %}
                             <div name="resenha" id="resenha" contenteditable="false" readonly >{{ usuario.resenha }}</div>
                         {% else %}
-                            <div name="resenha" id="resenha" contenteditable="false" readonly >Ainda não resenhou</div>
+                            <div name="resenha" id="resenha" contenteditable="false" readonly style="background-color: red; text-align: center;" >Ainda não resenhou, apenas avaliou!</div>
                         {% endif %}
                     </div>
                     <div class="livroTodasUsuarioNota">
