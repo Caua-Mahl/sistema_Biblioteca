@@ -227,7 +227,7 @@ input, select {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    background-color: chocolate;
+    background-color: #362e27;
     border-radius: 10px;
 }
 
@@ -243,7 +243,7 @@ input, select {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 50px;
-    background-color: #a9b5eb;
+    background-color: #362e27;
     margin-top: 20px;
     padding: 20px;
     border-radius: 10px;
@@ -255,9 +255,14 @@ input, select {
     align-items: center;
     text-align: center;
     padding: 20px;
-    background-color: #253583;
+    background-color: #5F4B3B;
     border-radius: 10px;
     color: white;
+}
+
+#nota {
+
+    width: 55%;
 }
 
 .livroTodasUsuarioNota {
@@ -275,6 +280,8 @@ input, select {
     align-items: center;
     margin: 10px;
 }
+
+
 
 
 

@@ -3,10 +3,10 @@
 {% block content %}
     <h1>{{ livro.titulo }}</h1>
     {% if erro %}
-        <p>{{ erro }}</p>
+        <p class="aviso">{{ erro }}</p>
     {% endif %}
     {% if sucesso %} 
-        <p>{{ sucesso }}</p>
+        <p class="aviso">{{ sucesso }}</p>
     {% endif %}
     <div class="livroOpcoes">
         <form action="{% url 'resenha' %}" method="post">
@@ -74,3 +74,4 @@
 
 
 {% endblock %}
+
