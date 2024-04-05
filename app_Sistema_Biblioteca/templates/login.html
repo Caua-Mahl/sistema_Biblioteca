@@ -3,9 +3,9 @@
 {% block content %}
     <h1>Login</h1>
     {% if erro %}
-        <p>{{ erro }}</p>
+        <p class="aviso">{{ erro }}</p>
     {% elif sucesso %}
-        <p>{{ sucesso }}</p>
+        <p class="aviso">{{ sucesso }}</p>
     {% endif %}
     <form action="{% url 'logar' %}" method="post">
         {% csrf_token %}

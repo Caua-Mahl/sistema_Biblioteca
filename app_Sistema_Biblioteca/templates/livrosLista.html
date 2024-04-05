@@ -3,10 +3,10 @@
 {% block content %}
     <h1>Livros</h1>
     {% if erro %}
-        <p>{{ erro }}</p>
+        <p class="aviso">{{ erro }}</p>
     {% endif %}
     {% if sucesso %}
-        <p>{{ sucesso }}</p>
+        <p class="aviso">{{ sucesso }}</p>
     {% endif %}
     {% if livros %}
         <div class="filtroLivros">
@@ -55,3 +55,4 @@
         <p>Nenhum livro cadastrado</p>
     {% endif %}
 {% endblock %}
+

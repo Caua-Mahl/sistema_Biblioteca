@@ -161,6 +161,20 @@ h1, h2, h3, h4, h5, h6 {
     margin: 30px;
 }
 
+
+label {
+    color: #fff;
+}
+
+input, select {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    margin: 5px;
+}
+
+
+
 .livro {
     display: flex;
     flex-direction: column;
@@ -321,6 +335,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .lista-btn {
     width: 100%;
+    font-weight: bold;
+
 }
 /* _____________________________________________________________________ */
 
