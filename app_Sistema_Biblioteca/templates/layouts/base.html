@@ -11,7 +11,7 @@
     <header>
         <nav>
             <ul>
-                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'home' %}" onclick="mudarcorheader()    ">Home</a></li>
                 
                 {% if 'usuario' in request.session %}
                 <li><a href="{% url 'logout' %}">Sair</a></li>
@@ -34,7 +34,7 @@
         <a href="" target="_blank" rel="">  Luan Goularte Kist</a>
     </footer>    
 
-    <script src="{% static 'script.js' %}"></script>
+    <script src="{% static 'index.js' %}"></script>
 </body>
 </html>
 

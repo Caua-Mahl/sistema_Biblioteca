@@ -9,12 +9,11 @@
         <p>{{ sucesso }}</p>
     {% endif %}
     <div class="livroOpcoes">
-
         <form action="{% url 'resenha' %}" method="post">
             {% csrf_token %}
             <input type="hidden" name="livro" value="{{ livro.id }}">
             <input type="hidden" name="id" value="{{ resenha.id }}">
-            <textarea name="resenha" id="resenha" rows="9" required >{{ resenha.resenha }}</textarea>
+            <div name="resenha" id="resenha" contenteditable="true" required >{{ resenha.resenha }} </div>
             <input type="submit" value="Resenhar" class="botao">
         </form>
 
@@ -55,9 +54,9 @@
                     <div class="livroTodasUsuarioResenha">
                         <p>Resenha: </p>
                         {% if usuario.resenha %}
-                            <textarea name="resenha" id="resenha" rows="9" readonly>{{ usuario.resenha }}</textarea>
+                            <div name="resenha" id="resenha" contenteditable="false" readonly >{{ usuario.resenha }}</div>
                         {% else %}
-                            <p>Ainda não resenhou <p>
+                            <div name="resenha" id="resenha" contenteditable="false" readonly >Ainda não resenhou</div>
                         {% endif %}
                     </div>
                     <div class="livroTodasUsuarioNota">

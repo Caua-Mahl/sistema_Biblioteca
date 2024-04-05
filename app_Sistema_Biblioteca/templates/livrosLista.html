@@ -9,14 +9,40 @@
         <p>{{ sucesso }}</p>
     {% endif %}
     {% if livros %}
+        <div class="filtroLivros">
+            <label for="filtro">Filtrar por:</label>
+            <select id="filtro" onchange="filtrarLivro(parentElement)">
+                <option value="titulo">titulo</option>
+                <option value="autor">autor</option>
+                <option value="gênero">gênero</option>
+            </select>
+            <input type="text" id="filtroTexto" onkeyup="filtrarLivro(parentElement)">
+        </div>
+
+        <div class="ordenacaoLivros">
+            <label for="ordenado">Ordenar por:</label>
+            <select id="ordenado" onchange="ordenarLivro()">
+                <option value="0">Título</option>
+                <option value="1">Autor</option>
+                <option value="2">Gênero</option>
+                <option value="3">Lançamento</option>
+                <option value="4">Nota Média</option>
+            </select>
+
+            <label for="ordem">Ordem:</label>
+            <select id="ordem" onchange="ordenarLivro()">
+                <option value="0">Crescente</option>
+                <option value="1">Decrescente</option>
+            </select>
+        </div>
         <div class="livros">
             {% for livro in livros %}
                 <div class="livro">
-                    <h2>{{ livro.titulo }}</h2>
-                    <p>Autor: {{ livro.autor }}</p>
-                    <p>Gênero: {{ livro.genero }}</p>
-                    <p>Lançamento: {{ livro.lancamento|date:'d-m-Y' }}</p>
-                    <p>Nota Média: {{ livro.notaMedia }}</p>
+                    <h2 class="titulo">{{ livro.titulo }}</h2>
+                    <p class="autor">Autor:  {{ livro.autor }}</p>
+                    <p class="gênero">Gênero: {{ livro.genero }}</p>
+                    <p class="lancamento">Lançamento: {{ livro.lancamento|date:'d-m-Y' }}</p>
+                    <p class="notaMedia">Nota Média: {{ livro.notaMedia }}</p>
                     <form action="{% url 'livro' %}" method="post">
                         {% csrf_token %}
                         <input type="hidden" name="livro" value="{{ livro.id }}">
