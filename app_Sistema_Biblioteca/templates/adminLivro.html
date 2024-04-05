@@ -8,39 +8,68 @@
     {% elif sucesso %}
         <p>{{ sucesso }}</p>
     {% endif %}
-    <div class="adminLivroCadastrar">
-        <h2>Cadastrar Livro</h2>
-        <form action="{% url 'adminLivro' %}" method="post">
-            {% csrf_token %}
-            <label for="titulo">Livro:</label>
-            <input type="text" name="titulo" id="titulo">
-            <label for="autor">Autor:</label>
-            <input type="text" name="autor" id="autor">
-            <label for="genero">Gênero:</label>
-            <select name="genero" id="genero">
-                <option value="Ação">Ação</option>
-                <option value="Aventura">Aventura</option>
-                <option value="Comédia">Comédia</option>
-                <option value="Drama">Drama</option>
-                <option value="Ficção Científica">Ficção Científica</option>
-                <option value="Romance">Romance</option>
-                <option value="Terror">Terror</option>
-            </select>
-            <label for="lancamento">Lançamento:</label>
-            <input type="date" name="lancamento" id="lancamento">
-            <button type="submit">Cadastrar</button>
-        </form>
-    </div>
-    <div class="adminLivroLista">
-        <h2>Lista de Livros</h2> 
-        {% if livros %}
+        <div class="adminLivroCadastrar">
+            <h2>Cadastrar Livro</h2>
+            <form action="{% url 'adminLivro' %}" method="post">
+                {% csrf_token %}
+                <label for="titulo">Livro:</label>
+                <input type="text" name="titulo" id="titulo">
+                <label for="autor">Autor:</label>
+                <input type="text" name="autor" id="autor">
+                <label for="genero">Gênero:</label>
+                <select name="genero" id="genero">
+                    <option value="Ação">Ação</option>
+                    <option value="Aventura">Aventura</option>
+                    <option value="Comédia">Comédia</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Ficção Científica">Ficção Científica</option>
+                    <option value="Romance">Romance</option>
+                    <option value="Terror">Terror</option>
+                </select>
+                <label for="lancamento">Lançamento:</label>
+                <input type="date" name="lancamento" id="lancamento">
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+        <div class="adminLivroLista">
+            <h2>Lista de Livros</h2> 
+            {% if livros %}
+            <div class="filtroLivros">
+                <label for="filtro">Filtrar por:</label>
+                <select id="filtro" onchange="filtrarLivro(parentElement)">
+                    <option value="titulo">titulo</option>
+                    <option value="autor">autor</option>
+                    <option value="gênero">gênero</option>
+                </select>
+                <input type="text" id="filtroTexto" onkeyup="filtrarLivro(parentElement)">
+            </div>
+
+            <div class="ordenacaoLivros">
+                <label for="ordenado">Ordenar por:</label>
+                <select id="ordenado" onchange="ordenarLivro()">
+                    <option value="0">Título</option>
+                    <option value="1">Autor</option>
+                    <option value="2">Gênero</option>
+                </select>
+
+                <label for="ordem">Ordem:</label>
+                <select id="ordem" onchange="ordenarLivro()">
+                    <option value="0">Crescente</option>
+                    <option value="1">Decrescente</option>
+                </select>
+            </div>
             <div class="adminLivroListaLivros">
                 {% for livro in livros %}
-                    <div class="adminLivroListaLivrosLivro">
+                    <div class="livro adminLivroListaLivrosLivro">
                         <form action="{% url 'editarLivro' %}" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="id" value="{{ livro.id }}">
                             <label for="titulo">Livro:</label>
+                            <div class="GAMBIARRA" hidden>
+                                <h2 class="titulo">{{ livro.titulo }}</h2>
+                                <p class="autor">Autor:  {{ livro.autor }}</p>
+                                <p class="gênero">Gênero: {{ livro.genero }}</p>
+                            </div>
                             <input type="text" name="titulo" id="titulo" value="{{ livro.titulo }}">
                             <label for="autor">Autor:</label>
                             <input type="text" name="autor" id="autor" value="{{ livro.autor }}">

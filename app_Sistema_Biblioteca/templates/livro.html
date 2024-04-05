@@ -13,7 +13,11 @@
             {% csrf_token %}
             <input type="hidden" name="livro" value="{{ livro.id }}">
             <input type="hidden" name="id" value="{{ resenha.id }}">
-            <div name="resenha" id="resenha" contenteditable="true" required >{{ resenha.resenha }} </div>
+            <textarea type="text"   name="resenha" id="resenha" placeholder="Resenha" required>
+                {% if resenha %}
+                    {{ resenha.resenha }}
+                {% endif %}
+            </textarea>
             <input type="submit" value="Resenhar" class="botao">
         </form>
 
@@ -46,17 +50,44 @@
         </form>
     </div>
 
+    <div class="filtroAluno">
+        <label for="filtro">Filtrar Aluno:</label>
+        <input type="text" id="filtroTexto" onkeyup="filtrarAluno()" class="digitado">
+        <div>
+            <label for="">Esconder Não Resenhados:</label>
+            <input type="checkbox" id="esconder" onclick="esconderNaoResenhados()">
+        </div>
+        <div>
+            <label for="">Esconder Não Avaliados:</label>
+            <input type="checkbox" id="esconderAvaliacao" onclick="esconderNaoAvaliados()">
+        </div>
+
+    </div>
+    <div class="ordenacao">
+        <label for="ordenado">Ordenar por:</label>
+        <select id="ordenado" onchange="ordenar()">
+            <option value="0">Aluno</option>
+            <option value="1">Nota</option>
+        </select>
+
+        <label for="ordem">Ordem:</label>
+        <select id="ordem" onchange="ordenar()">
+            <option value="0">Crescente</option>
+            <option value="1">Decrescente</option>
+        </select>
+    </div>
+
     <div class="livroTodas">
         {% for usuario in usuarios %}
             {% if usuario.resenha != None  or usuario.nota != None %}
                 <div class="livroTodasUsuario">
-                    <h2>{{ usuario.nome }}</h2>
+                    <h2 class="aluno">{{ usuario.nome }}</h2>
                     <div class="livroTodasUsuarioResenha">
                         <p>Resenha: </p>
                         {% if usuario.resenha %}
                             <div name="resenha" id="resenha" contenteditable="false" readonly >{{ usuario.resenha }}</div>
                         {% else %}
-                            <div name="resenha" id="resenha" contenteditable="false" readonly style="background-color: red; text-align: center;" >Ainda não resenhou, apenas avaliou!</div>
+                            <div name="resenha" id="resenha" contenteditable="false" readonly style="background-color: red; text-align: center;" class="semResenha">Ainda não resenhou, apenas avaliou!</div>
                         {% endif %}
                     </div>
                     <div class="livroTodasUsuarioNota">
@@ -64,14 +95,14 @@
                         {% if usuario.nota != None %}
                             <p>{{ usuario.nota }}</p>
                         {% else %}
-                            <p> N/A</p>
+                            <p class="semNota"> N/A</p>
                         {% endif %}
                     </div>
                 </div>
             {% endif %}
         {% endfor %}
     </div>
-
-
 {% endblock %}
+
+
 

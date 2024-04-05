@@ -14,7 +14,7 @@ class Command(BaseCommand):
             avaliacao = Avaliacao(
                 idLivro=random.randint(1, 100),
                 idUsuario=random.randint(1, 100),
-                nota=random.randint(0, 10),
+                nota=random.randint(0, 5),
             )
             avaliacao.validarDados()
             avaliacao.save()

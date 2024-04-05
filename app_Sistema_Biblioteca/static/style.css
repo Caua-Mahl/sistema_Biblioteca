@@ -185,8 +185,6 @@ input, select {
     margin: 5px;
 }
 
-
-
 .livro {
     display: flex;
     flex-direction: column;
@@ -194,8 +192,27 @@ input, select {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    background-color: #362e27;
     border-radius: 10px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-clip:unset;
+}
+
+.livro h2 {
+    color: #9d8502;
+    text-align: center;
+}
+
+.livro p {
+    color: #000000;
+    font-weight: 600;
+    margin: 2px;
+}   
+
+.livro img {
+    width: 100px;
+    height: 150px;
+    margin: 10px;
 }
 
 .livrosNota {
@@ -224,6 +241,15 @@ input, select {
     transition: 1s;
     background-color: #fff;
     color: #333333; 
+}
+
+.filtroAluno {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+
 }
 
 
