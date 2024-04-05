@@ -10,9 +10,9 @@
 <body>
     <header>
         <nav>
+            <a href="{% url 'home' %}" class="logo"><img src="{% static 'img/logo.png' %}" alt="logo"></a>
             <ul>
-                <li><a href="{% url 'home' %}"><img src="../../img/bkpst_removebg.png" alt="logo"></a></li>
-                <li><a href="{% url 'home' %}" onclick="mudarcorheader()">Home</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
                 
                 {% if 'usuario' in request.session %}
                 <li><a href="{% url 'logout' %}">Sair</a></li>

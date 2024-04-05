@@ -1,10 +1,10 @@
 from django.db import models
-import re
 
 class Avaliacao(models.Model):
     idLivro   = models.IntegerField()
     idUsuario = models.IntegerField()
     nota      = models.IntegerField()
+
 
     def __str__(self):
         return str(self.idLivro) + ' - ' + str(self.idUsuario)

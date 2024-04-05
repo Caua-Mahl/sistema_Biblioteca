@@ -15,3 +15,12 @@ Banco de dados:
 mudanças css e js
     python manage.py collectstatic
 
+
+popular rapidamente:
+    pip install faker
+    colar tudo de soco no terminal, migrate tem que estar feito:
+        python manage.py livros
+        python manage.py usuarios
+        python manage.py resenhas
+        python manage.py avaliacoes
+

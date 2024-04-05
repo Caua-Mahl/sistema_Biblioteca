@@ -1,8 +1,6 @@
 from django.db import models
 import re
 from app_Sistema_Biblioteca.Models.Avaliacao import Avaliacao
-from app_Sistema_Biblioteca.Models.Resenha import Resenha
-from app_Sistema_Biblioteca.Models.Usuario import Usuario
 
 class Livros(models.Model):
     titulo     = models.CharField(max_length=100)

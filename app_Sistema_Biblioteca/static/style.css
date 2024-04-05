@@ -23,6 +23,13 @@ header {
 
 }
 
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+}
 nav ul {
     display: flex;
     flex-direction: row;
@@ -45,6 +52,11 @@ nav a:hover {
     transition: 1.0s;
 }
 
+.logo img {
+    margin-left: 10px;
+    color: #FFD700;
+    height: 2em;
+}
 /* _____________________________________________________________________ */
 
 
@@ -300,6 +312,16 @@ input, select {
     border-radius: 10px;
     margin: 20px;
     color: #fff;
+}
+
+.adminLivroCadastrar form, .adminLivroLista form {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    width: 100%;
+}
+
+.adminLivroCadastrar form button, .adminLivroLista form button {
+    grid-column: span 2;
 }
 
 #genero {

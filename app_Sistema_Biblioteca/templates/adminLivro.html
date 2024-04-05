@@ -54,7 +54,7 @@
                                 <option value="Romance" {% if livro.genero == 'Romance' %} selected {% endif %}>Romance</option>
                                 <option value="Terror" {% if livro.genero == 'Terror' %} selected {% endif %}>Terror</option>
                             </select>
-                            <label for="lancamento">Lançamento</label>
+                            <label for="lancamento">Lançamento:</label>
                             <input class="lancamentoUp" type="date" name="lancamento" id="lancamento" value="{{ livro.lancamento|date:'d-m-Y' }}" required>
                             <button type="submit" class="lista-btn">Editar</button>
                         </form>
