@@ -337,10 +337,10 @@ input, select {
 
 /* _____________________________________________________________________ */
 
-/* adminLivro.html */
+/* admin.html */
 /* _____________________________________________________________________ */
 
-.adminLivroCadastrar {
+.adminCadastrar {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -356,13 +356,13 @@ input, select {
     display: flex;
 }
 
-.adminLivroCadastrar form, .adminLivroLista form {
+.adminCadastrar form, .adminLista form {
     display: grid;
     grid-template-columns: repeat(2, auto);
     width: 100%;
 }
 
-.adminLivroCadastrar form button, .adminLivroLista form button {
+.adminCadastrar form button, .adminLista form button {
     grid-column: span 2;
 }
 
@@ -376,7 +376,7 @@ input, select {
     width: 180px;
 }
 
-.adminLivroLista {
+.adminLista {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -387,13 +387,13 @@ input, select {
     border-radius: 10px;
 }
 
-.adminLivroListaLivros {
+.adminListaLivros {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 50px;
 }
 
-.adminLivroListaLivrosLivro {
+.adminListaLivrosLivro {
     display: flex;
     flex-direction: column;
     justify-content: center;

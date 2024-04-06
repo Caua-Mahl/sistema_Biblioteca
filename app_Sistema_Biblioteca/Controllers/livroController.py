@@ -19,7 +19,7 @@ ADMIN LIVROS
  _____________________________________________________________________ 
 """""
 
-def adminLivro(request):
+def admin(request):
     if 'usuario' not in request.session:
         return render(request, 'login.html', { 'erro' : 'Você não está logado!' })
     
@@ -27,7 +27,7 @@ def adminLivro(request):
         return render(request, 'livrosLista.html', {'livros': Livros.objects.all()})
 
     if request.method == 'GET':
-        return render(request, 'adminLivro.html', {'livros': Livros.objects.all()})
+        return render(request, 'admin.html', {'livros': Livros.objects.all()})
     
     try: 
 
@@ -47,9 +47,9 @@ def adminLivro(request):
             raise Exception('Livro já cadastrado!')
         
         novoLivro.save()
-        return render(request, 'adminLivro.html', {'sucesso': 'Livro cadastrado com sucesso!', 'livros': Livros.objects.all()})
+        return render(request, 'admin.html', {'sucesso': 'Livro cadastrado com sucesso!', 'livros': Livros.objects.all()})
     except Exception as e:
-        return render(request, 'adminLivro.html', {'erro': e, 'livros': Livros.objects.all()})
+        return render(request, 'admin.html', {'erro': e, 'livros': Livros.objects.all()})
     
 def editarLivro(request):
     try:
@@ -66,18 +66,18 @@ def editarLivro(request):
         livro.validarDados()
         
         livro.save()
-        return render(request, 'adminLivro.html', {'sucesso': 'Livro editado com sucesso!', 'livros': Livros.objects.all()})
+        return render(request, 'admin.html', {'sucesso': 'Livro editado com sucesso!', 'livros': Livros.objects.all()})
     
     except Exception as e:
-        return render(request, 'adminLivro.html', {'erro': e, 'livros': Livros.objects.all()})
+        return render(request, 'admin.html', {'erro': e, 'livros': Livros.objects.all()})
     
 def excluirLivro(request):
     try:
         livro = Livros.objects.get(id=request.POST['id'])
         livro.delete()
-        return render(request, 'adminLivro.html', {'sucesso': 'Livro excluído com sucesso!', 'livros': Livros.objects.all()})
+        return render(request, 'admin.html', {'sucesso': 'Livro excluído com sucesso!', 'livros': Livros.objects.all()})
     except Exception as e:
-        return render(request, 'adminLivro.html', {'erro': 'Não foi possivel excluir o livro', 'livros': Livros.objects.all()})
+        return render(request, 'admin.html', {'erro': 'Não foi possivel excluir o livro', 'livros': Livros.objects.all()})
     
 
 

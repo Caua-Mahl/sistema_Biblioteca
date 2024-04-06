@@ -6,7 +6,6 @@ from app_Sistema_Biblioteca.Controllers import livroController    as livro
 
 
 urlpatterns = [
-    path('admin/',         admin.site.urls),
     path('cadastro/',      cadastro.cadastro,      name='cadastro'),
     path('cadastrar/',     cadastro.cadastrar,     name='cadastrar'),
 
@@ -16,7 +15,7 @@ urlpatterns = [
 
     path('livros/',        livro.livrosLista,      name='livros'),
     path('livro/',         livro.livro,            name='livro'),
-    path('adminLivro/',    livro.adminLivro,       name='adminLivro'),
+    path('admin/',         livro.admin,            name='admin'),
     path('editarLivro/',   livro.editarLivro,      name='editarLivro'),
     path('excluirLivro/',  livro.excluirLivro,     name='excluirLivro'),
     path('avaliarLivro/',  livro.avaliarLivro,     name='avaliarLivro'),

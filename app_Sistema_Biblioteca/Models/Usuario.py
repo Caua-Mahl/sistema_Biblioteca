@@ -18,9 +18,13 @@ class Usuario(models.Model):
         self.validarNome()
         self.validarEmail()
         self.validarSenha(confirmarSenha)
+
+        if Usuario.objects.filter(nome=self.nome).exists():
+            raise Exception('Nome já cadastrado, Tente outro!')
         
-        if User.objects.filter(email=self.email).exists():
+        if Usuario.objects.filter(email=self.email).exists():
             raise Exception('Email já cadastrado, Tente outro!')
+        
 
     def validarDadosLogin(self):
         self.validarEmail()

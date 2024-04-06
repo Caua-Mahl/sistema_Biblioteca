@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from app_Sistema_Biblioteca.Models.Usuario import Usuario
 from app_Sistema_Biblioteca.Models.Livros  import Livros
+import hashlib  
 
 def login(request):
     if 'usuario' in request.session:
@@ -17,7 +18,7 @@ def logar(request):
     try:
         usuario.validarDadosLogin()
 
-        login = authenticate(request, username=request.POST['email'], password=request.POST['senha'])
+        login = authenticate(request, username=request.POST['email'], password=hashlib.md5(request.POST['senha'].encode()).hexdigest())
 
         if login is None:
             raise Exception('Email ou senha inválidos!')

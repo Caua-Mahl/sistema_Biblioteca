@@ -16,7 +16,6 @@ class Livros(models.Model):
         self.validarTitulo()
         self.validarAutor()
         self.validarGenero()
-        #self.validarLancamento()
 
     def validarTitulo(self):
         if len(self.titulo) < 3:
@@ -44,9 +43,6 @@ class Livros(models.Model):
     def validarGenero(self):
         if self.genero not in ['Ação', 'Aventura', 'Comédia', 'Drama', 'Ficção Científica', 'Romance', 'Terror']:
             raise Exception('Gênero inválido!')
-        
-    #def validarLancamento(self):
-        #impedir de criar livros com data de lançamento futura
 
     def notaMedia(self):
         avaliacoes = Avaliacao.objects.filter(idLivro=self.id)
