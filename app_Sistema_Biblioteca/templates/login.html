@@ -10,9 +10,9 @@
     <form action="{% url 'logar' %}" method="post" class="formLogin">
         {% csrf_token %}
         <label class="email" for="email"><strong>E-mail:</strong></label>
-        <input type="email" name="email" id="email">
+        <input type="email" name="email" id="email" required>
         <label for="senha"><strong>Senha:</strong></label>
-        <input type="password" name="senha" id="senha">
+        <input type="password" name="senha" id="senha" required>
         <button type="submit"><strong>Entrar</strong></button>
     </form>
 {% endblock %}
