@@ -8,29 +8,52 @@
     {% elif sucesso %}
         <p>{{ sucesso }}</p>
     {% endif %}
-        <div class="adminLivroCadastrar">
-            <h2>Cadastrar Livro</h2>
-            <form action="{% url 'adminLivro' %}" method="post">
-                {% csrf_token %}
-                <label for="titulo">Livro:</label>
-                <input type="text" name="titulo" id="titulo">
-                <label for="autor">Autor:</label>
-                <input type="text" name="autor" id="autor">
-                <label for="genero">Gênero:</label>
-                <select name="genero" id="genero">
-                    <option value="Ação">Ação</option>
-                    <option value="Aventura">Aventura</option>
-                    <option value="Comédia">Comédia</option>
-                    <option value="Drama">Drama</option>
-                    <option value="Ficção Científica">Ficção Científica</option>
-                    <option value="Romance">Romance</option>
-                    <option value="Terror">Terror</option>
-                </select>
-                <label for="lancamento">Lançamento:</label>
-                <input type="date" name="lancamento" id="lancamento">
-                <button type="submit">Cadastrar</button>
-            </form>
+        <div class="cadastros">   
+            <div class="adminLivroCadastrar">
+                <h2>Cadastrar Livro</h2>
+                <form action="{% url 'adminLivro' %}" method="post">
+                    {% csrf_token %}
+                    <label for="titulo">Livro:</label>
+                    <input type="text" name="titulo" id="titulo">
+                    <label for="autor">Autor:</label>
+                    <input type="text" name="autor" id="autor">
+                    <label for="genero">Gênero:</label>
+                    <select name="genero" id="genero">
+                        <option value="Ação">Ação</option>
+                        <option value="Aventura">Aventura</option>
+                        <option value="Comédia">Comédia</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Ficção Científica">Ficção Científica</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Terror">Terror</option>
+                    </select>
+                    <label for="lancamento">Lançamento:</label>
+                    <input type="date" name="lancamento" id="lancamento">
+                    <button type="submit"><strong>Cadastrar</strong></button>
+                </form>
+            </div>
+            <div class="adminLivroCadastrar">
+                <h2>Cadastrar Aluno</h2>
+                {% if erro %}
+                    <p class="aviso">{{ erro }}</p>
+                {% elif sucesso %}
+                    <p class="aviso">{{ sucesso }}</p>
+                {% endif %}
+                <form action="{% url 'cadastrar' %}" method="post">
+                    {% csrf_token %}
+                    <label for="nome"><strong>Nome:</strong></label>
+                    <input type="text" name="nome" id="nome">
+                    <label for="email">E-mail:</label>
+                    <input type="email" name="email" id="email">
+                    <label for="senha">Senha:</label>
+                    <input type="password" name="senha" id="senha">
+                    <label for="confirmar_senha">Confirmar senha:</label>
+                    <input type="password" name="confirmarSenha" id="confirmarSenha"> 
+                    <button type="submit"><strong>Cadastrar</strong></button>
+                </form>
+            </div>
         </div>
+        
         <div class="adminLivroLista">
             <h2>Lista de Livros</h2> 
             {% if livros %}
@@ -100,5 +123,6 @@
         {% endif %}
     </div>
 {% endblock %}
+
 
 

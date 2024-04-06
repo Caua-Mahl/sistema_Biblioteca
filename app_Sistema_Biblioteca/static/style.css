@@ -340,6 +340,11 @@ input, select {
     color: #fff;
 }
 
+
+.cadastros {
+    display: flex;
+}
+
 .adminLivroCadastrar form, .adminLivroLista form {
     display: grid;
     grid-template-columns: repeat(2, auto);
