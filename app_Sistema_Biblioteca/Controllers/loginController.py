@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from app_Sistema_Biblioteca.Models.Usuario import Usuario
+from app_Sistema_Biblioteca.Models.Livros  import Livros
 
 def login(request):
     if 'usuario' in request.session:
-        return render(request, 'home.html', { 'erro' : 'Você já está logado!' })
+        return render(request, 'livrosLista.html', {'livros': Livros.objects.all()})
     
     return render(request, 'login.html')
 
@@ -26,16 +27,16 @@ def logar(request):
 
         request.session['usuario']['admin'] = True if usuario.admin == True else False
         
-        return render(request, 'home.html', {'sucesso': 'Olá ' + request.session['usuario']['nome'] + ', seja bem-vindo!'})
+        return render(request, 'livrosLista.html', {'livros': Livros.objects.all()})
     
     except Exception as e:
         return render(request, 'login.html', {'erro': e})
 
 def logout(request):
     if 'usuario' not in request.session:
-        return render(request, 'home.html', { 'erro' : 'Você não está logado!' })
+        return render(request, 'login.html')
 
     if 'usuario' in request.session:
         del request.session['usuario']
     
-    return render(request, 'home.html', {'sucesso': 'Usuário deslogado com sucesso!'})
+    return render(request, 'login.html', {'sucesso': 'Usuário deslogado com sucesso!'})

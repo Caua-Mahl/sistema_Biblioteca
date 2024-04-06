@@ -10,7 +10,7 @@
 
     <form class="formCadastro" action="{% url 'cadastrar' %}" method="post">
         {% csrf_token %}
-        <label for="nome"><strong>Nome:</strong></label>
+        <label for="nome">Nome:</label>
         <input type="text" name="nome" id="nome">
         <label for="email">E-mail:</label>
         <input type="email" name="email" id="email">

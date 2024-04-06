@@ -63,8 +63,19 @@ nav a:hover {
 /* Corpo, uso geral */
 /* _____________________________________________________________________ */
 
-.formCadastro {
+.formCadastro, .formLogin {
     color: #fff;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: auto;
+    background-color: #362e27;
+    padding: 20px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.formCadastro button, .formLogin button{
+    grid-column: span 2;
 }
 
 .formCadastro:focus {

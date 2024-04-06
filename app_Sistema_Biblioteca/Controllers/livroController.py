@@ -7,7 +7,7 @@ from app_Sistema_Biblioteca.Models.Usuario   import Usuario
 
 def livrosLista(request):
     if 'usuario' not in request.session:
-        return render(request, 'home.html', { 'erro' : 'Você não está logado!' })
+        return render(request, 'login.html', { 'erro' : 'Você não está logado!' })
     
     return render(request, 'livrosLista.html', {'livros': Livros.objects.all()})
 
@@ -21,10 +21,10 @@ ADMIN LIVROS
 
 def adminLivro(request):
     if 'usuario' not in request.session:
-        return render(request, 'home.html', { 'erro' : 'Você não está logado!' })
+        return render(request, 'login.html', { 'erro' : 'Você não está logado!' })
     
     if request.session['usuario']['admin'] == False:
-        return render(request, 'home.html', { 'erro' : 'Você não tem permissão para acessar esta página!' })
+        return render(request, 'livrosLista.html', {'livros': Livros.objects.all()})
 
     if request.method == 'GET':
         return render(request, 'adminLivro.html', {'livros': Livros.objects.all()})
@@ -90,7 +90,7 @@ AO CLICAR EM VER MAIS DE UM LIVRO EXPECIFICO, ABAIXO ENVOLVE A PAGINA LIVRO.HTML
 
 def livro(request):
     if 'usuario' not in request.session:
-        return render(request, 'home.html', { 'erro' : 'Você não está logado!' })
+        return render(request, 'login.html', { 'erro' : 'Você não está logado!' })
 
     return render(request, 'livro.html', {
         'livro'     : Livros.objects.get(id=request.POST['livro']),

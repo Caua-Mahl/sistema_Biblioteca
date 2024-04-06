@@ -11,10 +11,8 @@
 <body>
     <header>
         <nav>
-            <a href="{% url 'home' %}" class="logo"><img src="{% static 'img/logo.png' %}" alt="logo"></a>
+            <a href="{% url 'livros' %}" class="logo"><img src="{% static 'img/logo.png' %}" alt="logo"></a>
             <ul>
-                <li><a href="{% url 'home' %}">Home</a></li>
-
                 {% if 'usuario' in request.session %}
                 <li><a href="{% url 'livros' %}">Livros</a></li>
                 <li><a href="{% url 'logout' %}">Sair</a></li>
