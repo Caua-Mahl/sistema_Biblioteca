@@ -2,6 +2,7 @@
 {% block title %}Resenhar Livro{% endblock %}
 {% block content %}
     <h1>{{ livro.titulo }}</h1>
+    <h2>Resenhar/Avaliar Livro:</h2>
     {% if erro %}
         <p class="aviso">{{ erro }}</p>
     {% endif %}
@@ -49,10 +50,12 @@
             <input type="submit" value="Avaliar" class="botao">
         </form>
     </div>
-
     <div class="filtroAluno">
-        <label for="filtro">Filtrar Aluno:</label>
-        <input type="text" id="filtroTexto" onkeyup="filtrarAluno()" class="digitado">
+        <h2>Filtros:</h2>
+        <div>
+            <label for="filtro">Filtrar Aluno:</label>
+            <input type="text" id="filtroTexto" onkeyup="filtrarAluno()" class="digitado">
+        </div>
         <div>
             <label for="">Esconder Não Resenhados:</label>
             <input type="checkbox" id="esconder" onclick="esconderNaoResenhados()">
@@ -76,12 +79,13 @@
             <option value="1">Decrescente</option>
         </select>
     </div>
+    <h2>Resenhas e Avaliações:</h2>
 
     <div class="livroTodas">
         {% for usuario in usuarios %}
             {% if usuario.resenha != None  or usuario.nota != None %}
                 <div class="livroTodasUsuario">
-                    <h2 class="aluno">{{ usuario.nome }}</h2>
+                    <h3 class="aluno">{{ usuario.nome }}</h3>
                     <div class="livroTodasUsuarioResenha">
                         <p>Resenha: </p>
                         {% if usuario.resenha %}

@@ -254,16 +254,20 @@ input, select {
     color: #333333; 
 }
 
+
 .filtroAluno {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 20px;
+    margin-top: 0;
 
 }
 
-
+.filtroAluno label {
+    margin-top: 0px;
+}
 /* _____________________________________________________________________ */
 
 

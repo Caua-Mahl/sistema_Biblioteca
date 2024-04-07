@@ -19,7 +19,7 @@ def cadastrar(request):
     novoUsuario.nome  = request.POST['nome']
     novoUsuario.email = request.POST['email']
     novoUsuario.senha = request.POST['senha']
-
+    
     try :
         novoUsuario.validarDadosCadastro(request.POST['confirmarSenha'])
 
@@ -33,10 +33,10 @@ def cadastrar(request):
             novoUsuario.admin = True
 
         novoUsuario.senha = hashlib.md5(novoUsuario.senha.encode()).hexdigest()
-
-        User.objects.create_user(username=novoUsuario.email, email=novoUsuario.email, password=novoUsuario.senha)
         
         novoUsuario.save()
+
+        User.objects.create_user(username=novoUsuario.email, email=novoUsuario.email, password=novoUsuario.senha)
 
         if 'usuario' in request.session and request.session['usuario']['admin'] == True:
            return render(request, 'admin.html', {'sucesso': 'Usuário cadastrado com sucesso!', 'livros': Livros.objects.all()})

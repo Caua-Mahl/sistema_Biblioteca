@@ -64,6 +64,15 @@
                     <option value="autor">autor</option>
                     <option value="gênero">gênero</option>
                 </select>
+                <select name="genero" id="generoFiltro" style="display: none;" onchange="filtrarLivro(parentElement)">
+                    <option value="Ação" {% if livro.genero == 'Ação' %} selected {% endif %}>Ação</option>
+                    <option value="Aventura" {% if livro.genero == 'Aventura' %} selected {% endif %}>Aventura</option>
+                    <option value="Comédia" {% if livro.genero == 'Comédia' %} selected {% endif %}>Comédia</option>
+                    <option value="Drama" {% if livro.genero == 'Drama' %} selected {% endif %}>Drama</option>
+                    <option value="Ficção Científica" {% if livro.genero == 'Ficção Científica' %} selected {% endif %}>Ficção Científica</option>
+                    <option value="Romance" {% if livro.genero == 'Romance' %} selected {% endif %}>Romance</option>
+                    <option value="Terror" {% if livro.genero == 'Terror' %} selected {% endif %}>Terror</option>
+                </select>
                 <input type="text" id="filtroTexto" onkeyup="filtrarLivro(parentElement)" class="digitado">
             </div>
 
