@@ -74,7 +74,7 @@ WSGI_APPLICATION = 'sistema_Biblioteca.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -85,7 +85,7 @@ DATABASES = {
         'PORT': '3306', 
     }
 }
-
+"""
 
 DATABASES = {
     'default': {

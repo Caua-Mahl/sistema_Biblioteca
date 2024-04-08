@@ -27,6 +27,9 @@ def logar(request):
         request.session['usuario'] = {'id': usuario.id, 'nome': usuario.nome}
 
         request.session['usuario']['admin'] = True if usuario.admin == True else False
+
+        if 'lembrar' in request.POST:
+            request.session.set_expiry(0)
         
         return render(request, 'livrosLista.html', {'livros': Livros.objects.all()})
     

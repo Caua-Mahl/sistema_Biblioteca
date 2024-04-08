@@ -12,12 +12,12 @@ def livrosLista(request):
     return render(request, 'livrosLista.html', {'livros': Livros.objects.all()})
 
 
-""""
+"""
  _____________________________________________________________________ 
 
 ADMIN LIVROS
  _____________________________________________________________________ 
-"""""
+"""
 
 def admin(request):
     if 'usuario' not in request.session:
