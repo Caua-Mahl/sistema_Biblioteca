@@ -1,22 +1,22 @@
 {% extends "layouts/base.html" %}
-{% block title %}Admin Livros{% endblock %}
+{% block title %}Admin{% endblock %}
 {% block content %}
-    <h1>Admin Livros (CRUD)</h1>
+    <h1>Admin</h1>
 
     {% if erro %}
-        <p>{{ erro }}</p>
+    <p class="aviso">{{ erro }}</p>
     {% elif sucesso %}
-        <p>{{ sucesso }}</p>
+    <p class="aviso">{{ sucesso }}</p>
     {% endif %}
         <div class="cadastros">   
-            <div class="adminLivroCadastrar">
+            <div class="adminCadastrar">
                 <h2>Cadastrar Livro</h2>
-                <form action="{% url 'adminLivro' %}" method="post">
+                <form action="{% url 'admin' %}" method="post">
                     {% csrf_token %}
                     <label for="titulo">Livro:</label>
-                    <input type="text" name="titulo" id="titulo">
+                    <input type="text" name="titulo" id="titulo" required>
                     <label for="autor">Autor:</label>
-                    <input type="text" name="autor" id="autor">
+                    <input type="text" name="autor" id="autor" required>
                     <label for="genero">Gênero:</label>
                     <select name="genero" id="genero">
                         <option value="Ação">Ação</option>
@@ -28,33 +28,33 @@
                         <option value="Terror">Terror</option>
                     </select>
                     <label for="lancamento">Lançamento:</label>
-                    <input type="date" name="lancamento" id="lancamento">
+                    <input type="date" name="lancamento" id="lancamento" required>
                     <button type="submit"><strong>Cadastrar</strong></button>
                 </form>
             </div>
-            <div class="adminLivroCadastrar">
+            <div class="adminCadastrar">
                 <h2>Cadastrar Aluno</h2>
-                {% if erro %}
-                    <p class="aviso">{{ erro }}</p>
-                {% elif sucesso %}
-                    <p class="aviso">{{ sucesso }}</p>
-                {% endif %}
                 <form action="{% url 'cadastrar' %}" method="post">
                     {% csrf_token %}
                     <label for="nome"><strong>Nome:</strong></label>
-                    <input type="text" name="nome" id="nome">
+                    <input type="text" name="nome" id="nome" required>
                     <label for="email">E-mail:</label>
-                    <input type="email" name="email" id="email">
+                    <input type="email" name="email" id="email" required>
                     <label for="senha">Senha:</label>
-                    <input type="password" name="senha" id="senha">
+                    <input type="password" name="senha" id="senha" required>
                     <label for="confirmar_senha">Confirmar senha:</label>
-                    <input type="password" name="confirmarSenha" id="confirmarSenha"> 
+                    <input type="password" name="confirmarSenha" id="confirmarSenha" required> 
+                    <label for="admin">Admin:</label>
+                    <select name="admin" id="admin">
+                        <option value="False">Não</option>
+                        <option value="True">Sim</option>
+                    </select>   
                     <button type="submit"><strong>Cadastrar</strong></button>
                 </form>
             </div>
         </div>
         
-        <div class="adminLivroLista">
+        <div class="adminLista">
             <h2>Lista de Livros</h2> 
             {% if livros %}
             <div class="filtroLivros">
@@ -63,6 +63,15 @@
                     <option value="titulo">titulo</option>
                     <option value="autor">autor</option>
                     <option value="gênero">gênero</option>
+                </select>
+                <select name="genero" id="generoFiltro" style="display: none;" onchange="filtrarLivro(parentElement)">
+                    <option value="Ação" {% if livro.genero == 'Ação' %} selected {% endif %}>Ação</option>
+                    <option value="Aventura" {% if livro.genero == 'Aventura' %} selected {% endif %}>Aventura</option>
+                    <option value="Comédia" {% if livro.genero == 'Comédia' %} selected {% endif %}>Comédia</option>
+                    <option value="Drama" {% if livro.genero == 'Drama' %} selected {% endif %}>Drama</option>
+                    <option value="Ficção Científica" {% if livro.genero == 'Ficção Científica' %} selected {% endif %}>Ficção Científica</option>
+                    <option value="Romance" {% if livro.genero == 'Romance' %} selected {% endif %}>Romance</option>
+                    <option value="Terror" {% if livro.genero == 'Terror' %} selected {% endif %}>Terror</option>
                 </select>
                 <input type="text" id="filtroTexto" onkeyup="filtrarLivro(parentElement)" class="digitado">
             </div>
@@ -81,9 +90,9 @@
                     <option value="1">Decrescente</option>
                 </select>
             </div>
-            <div class="adminLivroListaLivros">
+            <div class="adminListaLivros">
                 {% for livro in livros %}
-                    <div class="livro adminLivroListaLivrosLivro">
+                    <div class="livro adminListaLivrosLivro">
                         <form action="{% url 'editarLivro' %}" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="id" value="{{ livro.id }}">

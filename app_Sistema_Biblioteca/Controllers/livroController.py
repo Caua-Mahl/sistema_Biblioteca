@@ -7,27 +7,27 @@ from app_Sistema_Biblioteca.Models.Usuario   import Usuario
 
 def livrosLista(request):
     if 'usuario' not in request.session:
-        return render(request, 'home.html', { 'erro' : 'Você não está logado!' })
+        return render(request, 'login.html', { 'erro' : 'Você não está logado!' })
     
     return render(request, 'livrosLista.html', {'livros': Livros.objects.all()})
 
 
-""""
+"""
  _____________________________________________________________________ 
 
 ADMIN LIVROS
  _____________________________________________________________________ 
-"""""
+"""
 
-def adminLivro(request):
+def admin(request):
     if 'usuario' not in request.session:
-        return render(request, 'home.html', { 'erro' : 'Você não está logado!' })
+        return render(request, 'login.html', { 'erro' : 'Você não está logado!' })
     
     if request.session['usuario']['admin'] == False:
-        return render(request, 'home.html', { 'erro' : 'Você não tem permissão para acessar esta página!' })
+        return render(request, 'livrosLista.html', {'livros': Livros.objects.all()})
 
     if request.method == 'GET':
-        return render(request, 'adminLivro.html', {'livros': Livros.objects.all()})
+        return render(request, 'admin.html', {'livros': Livros.objects.all()})
     
     try: 
 
@@ -47,9 +47,9 @@ def adminLivro(request):
             raise Exception('Livro já cadastrado!')
         
         novoLivro.save()
-        return render(request, 'adminLivro.html', {'sucesso': 'Livro cadastrado com sucesso!', 'livros': Livros.objects.all()})
+        return render(request, 'admin.html', {'sucesso': 'Livro cadastrado com sucesso!', 'livros': Livros.objects.all()})
     except Exception as e:
-        return render(request, 'adminLivro.html', {'erro': e, 'livros': Livros.objects.all()})
+        return render(request, 'admin.html', {'erro': e, 'livros': Livros.objects.all()})
     
 def editarLivro(request):
     try:
@@ -66,18 +66,18 @@ def editarLivro(request):
         livro.validarDados()
         
         livro.save()
-        return render(request, 'adminLivro.html', {'sucesso': 'Livro editado com sucesso!', 'livros': Livros.objects.all()})
+        return render(request, 'admin.html', {'sucesso': 'Livro editado com sucesso!', 'livros': Livros.objects.all()})
     
     except Exception as e:
-        return render(request, 'adminLivro.html', {'erro': e, 'livros': Livros.objects.all()})
+        return render(request, 'admin.html', {'erro': e, 'livros': Livros.objects.all()})
     
 def excluirLivro(request):
     try:
         livro = Livros.objects.get(id=request.POST['id'])
         livro.delete()
-        return render(request, 'adminLivro.html', {'sucesso': 'Livro excluído com sucesso!', 'livros': Livros.objects.all()})
+        return render(request, 'admin.html', {'sucesso': 'Livro excluído com sucesso!', 'livros': Livros.objects.all()})
     except Exception as e:
-        return render(request, 'adminLivro.html', {'erro': 'Não foi possivel excluir o livro', 'livros': Livros.objects.all()})
+        return render(request, 'admin.html', {'erro': 'Não foi possivel excluir o livro', 'livros': Livros.objects.all()})
     
 
 
@@ -90,7 +90,7 @@ AO CLICAR EM VER MAIS DE UM LIVRO EXPECIFICO, ABAIXO ENVOLVE A PAGINA LIVRO.HTML
 
 def livro(request):
     if 'usuario' not in request.session:
-        return render(request, 'home.html', { 'erro' : 'Você não está logado!' })
+        return render(request, 'login.html', { 'erro' : 'Você não está logado!' })
 
     return render(request, 'livro.html', {
         'livro'     : Livros.objects.get(id=request.POST['livro']),

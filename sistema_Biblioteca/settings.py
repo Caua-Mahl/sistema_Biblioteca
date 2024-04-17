@@ -74,6 +74,18 @@ WSGI_APPLICATION = 'sistema_Biblioteca.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'livros', 
+        'USER': 'root',
+        'PASSWORD': 'senha1',  
+        'HOST': 'localhost',
+        'PORT': '3306', 
+    }
+}
+"""
 
 DATABASES = {
     'default': {
@@ -81,19 +93,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 } 
-
-"""""
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost', 
-        'PORT': '5455',
-    }
-}
-"""""
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

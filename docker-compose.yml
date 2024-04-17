@@ -1,10 +1,10 @@
 version: '3'
 services:
-  postgres:
-    image: postgres
+  mysql:
+    image: mysql:8.0
     ports:
-      - "5455:5432"
+      - "3306:3306"
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
+      MYSQL_ROOT_PASSWORD: senha1
+      MYSQL_DATABASE: livros
+      

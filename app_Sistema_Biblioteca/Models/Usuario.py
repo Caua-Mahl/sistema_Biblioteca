@@ -8,7 +8,7 @@ from app_Sistema_Biblioteca.Models.Resenha import Resenha
 class Usuario(models.Model):
     nome    = models.CharField(max_length=100)
     email   = models.EmailField(max_length=100)
-    senha   = models.CharField(max_length=20)
+    senha   = models.CharField(max_length=32)
     admin   = models.BooleanField(default=False)
 
     def __str__(self):
@@ -18,9 +18,13 @@ class Usuario(models.Model):
         self.validarNome()
         self.validarEmail()
         self.validarSenha(confirmarSenha)
+
+        if Usuario.objects.filter(nome=self.nome).exists():
+            raise Exception('Nome já cadastrado, Tente outro!')
         
-        if User.objects.filter(email=self.email).exists():
+        if Usuario.objects.filter(email=self.email).exists():
             raise Exception('Email já cadastrado, Tente outro!')
+        
 
     def validarDadosLogin(self):
         self.validarEmail()

@@ -63,8 +63,19 @@ nav a:hover {
 /* Corpo, uso geral */
 /* _____________________________________________________________________ */
 
-.formCadastro {
+.formCadastro, .formLogin {
     color: #fff;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: auto;
+    background-color: #362e27;
+    padding: 20px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.formCadastro button, .formLogin button{
+    grid-column: span 2;
 }
 
 .formCadastro:focus {
@@ -159,6 +170,9 @@ h1, h2, h3, h4, h5, h6 {
     overflow-y: auto;
     word-wrap: break-word;
 }
+.formLogin div {
+    grid-column: span 2;
+}
 
 /* _____________________________________________________________________ */
 
@@ -243,16 +257,20 @@ input, select {
     color: #333333; 
 }
 
+
 .filtroAluno {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 20px;
+    margin-top: 0;
 
 }
 
-
+.filtroAluno label {
+    margin-top: 0px;
+}
 /* _____________________________________________________________________ */
 
 
@@ -326,10 +344,10 @@ input, select {
 
 /* _____________________________________________________________________ */
 
-/* adminLivro.html */
+/* admin.html */
 /* _____________________________________________________________________ */
 
-.adminLivroCadastrar {
+.adminCadastrar {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -345,13 +363,13 @@ input, select {
     display: flex;
 }
 
-.adminLivroCadastrar form, .adminLivroLista form {
+.adminCadastrar form, .adminLista form {
     display: grid;
     grid-template-columns: repeat(2, auto);
     width: 100%;
 }
 
-.adminLivroCadastrar form button, .adminLivroLista form button {
+.adminCadastrar form button, .adminLista form button {
     grid-column: span 2;
 }
 
@@ -365,7 +383,7 @@ input, select {
     width: 180px;
 }
 
-.adminLivroLista {
+.adminLista {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -376,13 +394,13 @@ input, select {
     border-radius: 10px;
 }
 
-.adminLivroListaLivros {
+.adminListaLivros {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 50px;
 }
 
-.adminLivroListaLivrosLivro {
+.adminListaLivrosLivro {
     display: flex;
     flex-direction: column;
     justify-content: center;
