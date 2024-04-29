@@ -138,26 +138,35 @@ def avaliarLivro(request):
 
         })
     
-def resenha(request):    
-    if (not request.POST['resenha']):
-        raise Exception('Escreva a resenha!')
-    
-    if Resenha.objects.filter(idLivro=request.POST['livro'], idUsuario=request.session['usuario']['id']):
-        resenha = Resenha.objects.get(idLivro=request.POST['livro'], idUsuario=request.session['usuario']['id'])
-        resenha.resenha = request.POST['resenha']
-    else:
-        resenha           = Resenha()
-        resenha.idLivro   = request.POST['livro']
-        resenha.idUsuario = request.session['usuario']['id']
-        resenha.resenha   = request.POST['resenha']
-    
-    resenha.validarDados()
-    resenha.save()
-    
-    return render(request, 'livro.html', {
-        'sucesso'   : 'Resenha feita com sucesso!',
-        'livro'     : Livros.objects.get(id=request.POST['livro']),
-        'resenha'   : Resenha.objects.filter(idLivro=request.POST['livro'], idUsuario=request.session['usuario']['id']).first(),
-        'avaliacao' : Avaliacao.objects.filter(idLivro=request.POST['livro'], idUsuario=request.session['usuario']['id']).first(),
-        'usuarios'  : Usuario.puxarUsuarios(idLivro=request.POST['livro']),
-    })
+def resenha(request):
+    try: 
+        if (not request.POST['resenha']):
+            raise Exception('Escreva a resenha!')
+        
+        if Resenha.objects.filter(idLivro=request.POST['livro'], idUsuario=request.session['usuario']['id']):
+            resenha = Resenha.objects.get(idLivro=request.POST['livro'], idUsuario=request.session['usuario']['id'])
+            resenha.resenha = request.POST['resenha']
+        else:
+            resenha           = Resenha()
+            resenha.idLivro   = request.POST['livro']
+            resenha.idUsuario = request.session['usuario']['id']
+            resenha.resenha   = request.POST['resenha']
+        
+        resenha.validarDados()
+        resenha.save()
+        
+        return render(request, 'livro.html', {
+            'sucesso'   : 'Resenha feita com sucesso!',
+            'livro'     : Livros.objects.get(id=request.POST['livro']),
+            'resenha'   : Resenha.objects.filter(idLivro=request.POST['livro'], idUsuario=request.session['usuario']['id']).first(),
+            'avaliacao' : Avaliacao.objects.filter(idLivro=request.POST['livro'], idUsuario=request.session['usuario']['id']).first(),
+            'usuarios'  : Usuario.puxarUsuarios(idLivro=request.POST['livro']),
+        })
+    except Exception as e:
+        return render(request, 'livro.html', {
+            'erro'      : e, 
+            'livro'     : Livros.objects.get(id=request.POST['livro']),
+            'resenha'   : Resenha.objects.filter(idLivro=request.POST['livro'], idUsuario=request.session['usuario']['id']).first(),
+            'avaliacao' : Avaliacao.objects.filter(idLivro=request.POST['livro'], idUsuario=request.session['usuario']['id']).first(),
+            'usuarios'  : Usuario.puxarUsuarios(idLivro=request.POST['livro']),
+        })
