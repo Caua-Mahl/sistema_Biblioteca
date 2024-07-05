@@ -5,6 +5,10 @@ from app_Sistema_Biblioteca.Models.Avaliacao import Avaliacao
 from app_Sistema_Biblioteca.Models.Resenha   import Resenha
 from app_Sistema_Biblioteca.Models.Usuario   import Usuario
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 def livrosLista(request):
     if 'usuario' not in request.session:
         return render(request, 'login.html', { 'erro' : 'Você não está logado!' })
@@ -170,3 +174,7 @@ def resenha(request):
             'avaliacao' : Avaliacao.objects.filter(idLivro=request.POST['livro'], idUsuario=request.session['usuario']['id']).first(),
             'usuarios'  : Usuario.puxarUsuarios(idLivro=request.POST['livro']),
         })
+
+def realizar_acao_critica(request):
+    logger.info(f'Ação crítica realizada por usuário {request.session["usuario"]["id"]} em {timezone.now()}')
+
